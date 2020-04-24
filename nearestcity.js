@@ -43,6 +43,7 @@ async function getNearestCity() {
 
     //get the ID of the container for weather
     const containerWeather = document.getElementById("weather");
+
     //set the weather deatails
     const humidityp = document.createElement("p");
     humidityp.innerHTML = `Humidity: ${humidity}`;

@@ -10,21 +10,31 @@
 
 <body>
 
-    <section class="container">
+    <section class="container" id="nearest-city">
         <h1>NEAREST CITY</h1>
         <div id="nearest-city"></div>
         <div id="aqi"></div>
         <div id="weather"></div>
     </section>
-    <div>
-        <ul id="states">
+    <section class="container" id="select-city">
+        <input id="filter-input" type="text" placeholder="Search">
+        <div id="states">
+        </div>
+        <div id="state-options">
+            <select name="state" id="main-menu">
+                <option value="">Select</option>
+            </select>
+            <select name="state" id="sub-menu">
+                <option value="">Select</option>
+            </select>
+        </div>
+    </section>
+    <section class="container" id="selected-city">
 
-        </ul>
-    </div>
-    <div id="state-options">
+    </section>
 
-    </div>
-    <script src="./nearestcity.js"></script>
+
+    <!-- <script src="./nearestcity.js"></script> -->
     <script src="./states.js"></script>
 </body>
 

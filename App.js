@@ -21,22 +21,19 @@ const getData = async () => {
     // const response = await fetch(url);
     // const responseData = await response.json();
     // console.log(responseData);
-
     // const r = await fetch(urlmicrodat);
     // const rd = await r.json();
     // console.log(rd);
     /**List of nearest city */
-    const responseNC = await fetch(urlNearestCity);
-    const responseNCData = await responseNC.json();
-    console.log(responseNCData);
-    console.log(responseNCData.data.city);
+    // const responseNC = await fetch(urlNearestCity);
+    // const responseNCData = await responseNC.json();
+    // console.log(responseNCData);
+    // console.log(responseNCData.data.city);
     // listState(responseData);
-    nearestCity(responseNCData);
-
+    // nearestCity(responseNCData);
     /**List of countries */
     // const responseCountry = await fetch(urlCountry);
     // const countryData = await responseCountry.json();
-
     // const INDIA = countryData.data[33].country;
     // console.log(countryData);
     // console.log(INDIA.toUpperCase());
@@ -57,7 +54,6 @@ const getData = async () => {
     // const dataCities = await responseCities.json();
     // console.log(dataCities);
     /**List of supported cities of a country */
-
     /**Data of a city */
     // const response = await fetch(urlmicrodat);
     // const responseData = await response.json();
