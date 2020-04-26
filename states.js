@@ -1,15 +1,115 @@
 const urlStates =
     "https://api.airvisual.com/v2/states?country=INDIA&key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0";
 
-const dataOfStates = {};
+const dataOfStates = {
+    Assam: ["Guwahati", "Tezpur", "Dibrughar", "Silchar"],
+    Meghalaya: ["Shillong", "Tura", "Cherrapunji", "Williamnagar"],
+    "Andhra Pradesh": ["Amaravati", "Rajamahendravaram", "Tirupati"],
+    Bihar: ["Gaya", "Muzaffarpur"],
+    Delhi: [
+        "Alipur",
+        "Bawana",
+        "Defence Colony",
+        "Delhi",
+        "Deoli",
+        "Karol Bagh",
+        "New Delhi",
+        "Pitampura",
+        "Shahdara",
+    ],
+    Gujarat: [
+        "Adalaj",
+        "Ahmedabad",
+        "Ankleshwar",
+        "Ghandinagar",
+        "Naroda",
+        "Sarkhej",
+        "Vapi",
+    ],
+    Haryana: [
+        "Ambala",
+        "Bahadurgarh",
+        "Bhiwani",
+        "Dharuhera",
+        "Faridabad",
+        "Fatehabad",
+        "Firozpur Jhirka",
+        "Gharaunda",
+        "Gurugram",
+        "Hisar",
+        "Jind",
+        "Kaithal",
+        "Narnaul",
+        "Palwal",
+        "Panchkula",
+        "Rohtak",
+        "Sirsa",
+        "Sonipat",
+        "Thanesar",
+        "Yamunanagar",
+    ],
+    Jharkhand: ["Jorapokhar"],
+    Karnataka: [
+        "Bengaluru",
+        "Chik Ballapur",
+        "Closepet",
+        "Gulbarga",
+        "Hoskote",
+        "Mysore",
+        "Yadgir",
+        "Yelahanka",
+    ],
+    Kerala: ["Elur", "Thiruvananthapuram"],
+    "Madhya Pradesh": [
+        "Bhopal",
+        "Damoh",
+        "Dewas",
+        "Indore",
+        "Jabalpur",
+        "Maihar",
+        "Mandideep",
+        "Murwara",
+        "Pithampur",
+        "Ratlam",
+        "Satna",
+        "Ujjain",
+    ],
+    Maharashtra: [
+        "Airoli",
+        "Alandi",
+        "Artist Village",
+        "Aurangabad",
+        "Borivli",
+        "Chandrapur",
+        "Kalyan",
+        "Lohogaon",
+        "Mumbai",
+        "Nagpur",
+        "Nashik",
+        "Pimpri",
+        "Powai",
+        "Pune",
+        "Shivaji Nagar",
+        "Solapur",
+        "Thane",
+        "Uran",
+        "Virar",
+    ],
+    Odisha: ["Brajrajnagar", "Talcher"],
+};
+
+console.log(Object.getOwnPropertyNames(dataOfStates));
+
+listState(Object.getOwnPropertyNames(dataOfStates));
+// document.getElementById("main-menu").onclick = function get(){
+
+// }
+
 async function getStates() {
     const response = await fetch(urlStates);
     const processedResponse = await response.json();
-
-    // console.log(processedResponse);
-
     const stateList = processedResponse.data;
-    createDataOfStates(stateList);
+    // createDataOfStates(stateList);
     listState(stateList);
 }
 
@@ -43,8 +143,38 @@ function createArrayOfCities(state, cityList) {
 
     dataOfStates[`${state}`] = arrayCities;
     console.log("dataOfStates:", dataOfStates);
+
+    // getSelectValue();
 }
 
+async function getCityData(state, city) {
+    // const url =
+    //     "https://api.airvisual.com/v2/city?city=Shillong&state=Meghalaya&country=INDIA&key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0";
+
+    // state = state + "";
+    // city = city + "";
+    // console.log("state: " + state);
+    // console.log(typeof state);
+    // console.log("city: " + city);
+    // console.log(typeof city);
+    const response = await fetch(
+        `https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=INDIA&key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0`
+    );
+
+    // const response = await fetch(url);
+    const processedResponse = await response.json();
+    console.log("here", processedResponse);
+
+    displayData(processedResponse);
+}
+function getSelectValue() {
+    const state = document.getElementById("main-menu");
+    const city = document.getElementById("sub-menu");
+    console.log("state: ", state.value, "city: ", city.value);
+
+    // console.log(typeof JSON.stringify(state));
+    getCityData(state.value, city.value);
+}
 //------------------------------------------------------------------------s
 async function getCities() {
     const state = "Delhi";
@@ -57,21 +187,21 @@ async function getCities() {
     getCityDetails();
 }
 
-async function getCityDetails() {
-    const city = "Guwahati";
-    const state = "Assam";
-    // const country = "India";
+// async function getCityDetails() {
+//     const city = "Guwahati";
+//     const state = "Assam";
+//     // const country = "India";
 
-    const url = `https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=INDIA&key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0`;
+//     const url = `https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=INDIA&key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0`;
 
-    const response = await fetch(url);
-    const processedResponse = await response.json();
+//     const response = await fetch(url);
+//     const processedResponse = await response.json();
 
-    console.log("getCityDetails: ", processedResponse);
+//     console.log("getCityDetails: ", processedResponse);
 
-    displayData(processedResponse, "selected-city");
-}
-function displayData(cityData, id) {
+//     displayData(processedResponse, "selected-city");
+// }
+function displayData(cityData) {
     console.log(cityData.status);
 
     //get city name
@@ -94,35 +224,35 @@ function displayData(cityData, id) {
     console.log(temp);
 
     //get the ID of the container for the city name
-    const containerNearestCity = document.getElementById(id);
+    // const containerNearestCity = document.getElementById(id);
 
     //set the city name
-    const cityh3 = document.createElement("h3");
-    cityh3.innerHTML = city;
-    containerNearestCity.appendChild(cityh3);
+    // const cityh3 = document.createElement("h3");
+    // cityh3.innerHTML = city;
+    // containerNearestCity.appendChild(cityh3);
 
-    //get the ID of the container for AQI
-    const containerAqi = document.getElementById("aqi");
-    //set the AQI
-    const aqih3 = document.createElement("h3");
-    aqih3.innerHTML = `AQI ${aqi}`;
-    containerAqi.appendChild(aqih3);
+    // //get the ID of the container for AQI
+    // const containerAqi = document.getElementById("aqi");
+    // //set the AQI
+    // const aqih3 = document.createElement("h3");
+    // aqih3.innerHTML = `AQI ${aqi}`;
+    // containerAqi.appendChild(aqih3);
 
-    //get the ID of the container for weather
-    const containerWeather = document.getElementById("weather");
+    // //get the ID of the container for weather
+    // const containerWeather = document.getElementById("weather");
 
-    //set the weather deatails
-    const humidityp = document.createElement("p");
-    humidityp.innerHTML = `Humidity: ${humidity}`;
-    containerWeather.appendChild(humidityp);
+    // //set the weather deatails
+    // const humidityp = document.createElement("p");
+    // humidityp.innerHTML = `Humidity: ${humidity}`;
+    // containerWeather.appendChild(humidityp);
 
-    const pressurep = document.createElement("p");
-    pressurep.innerHTML = `Pressure: ${pressure}`;
-    containerWeather.appendChild(pressurep);
+    // const pressurep = document.createElement("p");
+    // pressurep.innerHTML = `Pressure: ${pressure}`;
+    // containerWeather.appendChild(pressurep);
 
-    const tempp = document.createElement("p");
-    tempp.innerHTML = `Temp: ${temp}`;
-    containerWeather.appendChild(tempp);
+    // const tempp = document.createElement("p");
+    // tempp.innerHTML = `Temp: ${temp}`;
+    // containerWeather.appendChild(tempp);
 }
 function listState(stateArr) {
     // console.log("here", stateArr[0].state);
@@ -147,11 +277,13 @@ function listState(stateArr) {
     let main = document.getElementById("main-menu");
     let sub = document.getElementById("sub-menu");
 
+    console.log(stateArr);
     for (let i = 0; i < stateArr.length; i++) {
         let option = document.createElement("option");
-        option.value = stateArr[i].state;
-        option.text = stateArr[i].state;
+        option.value = stateArr[i];
+        option.text = stateArr[i];
         main.appendChild(option);
+        console.log(stateArr[i]);
     }
 
     main.addEventListener("change", function () {
@@ -171,6 +303,6 @@ function listState(stateArr) {
     });
 }
 
-window.onload = getStates();
+// window.onload = getStates();
 
 // window.onload = getCities();

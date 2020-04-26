@@ -3,20 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="vieCwport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./styles/main.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
+
 </head>
 
 <body>
-
-    <section class="container" id="nearest-city">
+    <input id="search" type="text" placeholder="Search box" size="50">
+    <!-- <section class="container" id="nearest-city">
         <h1>NEAREST CITY</h1>
         <div id="nearest-city"></div>
         <div id="aqi"></div>
         <div id="weather"></div>
     </section>
     <section class="container" id="select-city">
+
         <input id="filter-input" type="text" placeholder="Search">
         <div id="states">
         </div>
@@ -27,15 +31,18 @@
             <select name="state" id="sub-menu">
                 <option value="">Select</option>
             </select>
+            <button onclick="getSelectValue()">Get</button>
         </div>
     </section>
     <section class="container" id="selected-city">
 
-    </section>
+    </section> -->
 
 
     <!-- <script src="./nearestcity.js"></script> -->
-    <script src="./states.js"></script>
+    <!-- <script src="./states.js"></script> -->
+
+    <script src="./places.js"></script>
 </body>
 
 </html>
