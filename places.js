@@ -53,7 +53,7 @@ function displayData(cityData) {
     const pressure = weather.pr;
     const temp = weather.tp;
     //get AQI
-    let aqi = cityData.data.current.pollution.aqius;
+    const aqi = cityData.data.current.pollution.aqius;
 
     console.log(city);
     // console.log(weather);
@@ -79,7 +79,6 @@ function displayData(cityData) {
 
     const aqih2 = document.createElement("h2");
     aqih2.className = "aqi";
-    aqi = 320;
     if (aqi <= 50) {
         container.classList.add("green");
     } else if (aqi <= 100) {
