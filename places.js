@@ -65,9 +65,12 @@ function displayData(cityData) {
 
     // Create a div container that will store the other elements
     //get body
-    const body = document.getElementById("body");
+    const body = document.getElementById("weather-details");
     const container = document.createElement("div");
+    container.className = "cards";
 
+    const cardsContainer = document.createElement("div");
+    cardsContainer.className = "cards-inner-container";
     // city name
     const cityh3 = document.createElement("h3");
     cityh3.innerHTML = city;
@@ -93,8 +96,10 @@ function displayData(cityData) {
     pressurep.innerHTML = pressure;
     container.appendChild(pressurep);
 
+    // Append the containe rto the inner container
+    cardsContainer.appendChild(container);
     // append the container to body
-    body.appendChild(container);
+    body.appendChild(cardsContainer);
 }
 
 /**

@@ -1,0 +1,57 @@
+@media only screen and (min-width: 576px) {
+    /* header section */
+    .header {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        padding: 2em 0;
+    }
+    .right {
+        padding-top: 0;
+        margin-left: 68%;
+        line-height: 1;
+    }
+
+    .right p,
+    .left p {
+        font-weight: 700;
+        color: var(--secondary-font);
+    }
+    .right p {
+        float: left;
+    }
+    .switch {
+        float: right;
+    }
+
+    .right p {
+        padding: 0.5em 1em 0 0;
+    }
+    .mobile-visible {
+        display: none;
+    }
+    .mobile {
+        display: none;
+    }
+
+    /* cards */
+    .cards {
+        flex-direction: row;
+        /* margin: 2em 4em 4em 8em; */
+        position: relative;
+    }
+    .card {
+        display: block;
+        float: left;
+        width: 22%;
+        /* height: 28vh; */
+        margin-right: 2%;
+        background-color: var(--card-background);
+        text-align: center;
+        border-radius: 3px;
+        align-items: center;
+    }
+    .card:hover {
+        background-color: var(--card-background-highlight);
+    }
+}

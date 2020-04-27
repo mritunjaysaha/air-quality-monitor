@@ -9,7 +9,6 @@
 }
 * {
     margin: 0;
-    box-sizing: border-box;
     text-decoration: none;
     list-style: none;
     font-family: "Inter", sans-serif;
@@ -47,10 +46,70 @@ body {
     --secondary-font: hsl(228, 12%, 44%);
 }
 
-* {
-    margin: 0;
-    box-sizing: border-box;
+body {
+    background: linear-gradient(
+        to bottom,
+        var(--main-background-top) 30%,
+        var(--main-background) 30% 80%,
+        var(--main-background) 80%
+    );
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+
+    color: var(--main-font);
 }
 
-.container {
+/* 
+
+
+MOBILE FIRST CSS DESIGN
+
+
+*/
+/********************************
+*            HEADER             *
+*********************************/
+.header {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 1em;
+}
+.header h1 {
+    font-size: 1.5em;
+    padding-bottom: 1em;
+}
+.right {
+    display: inline-block;
+    padding-top: 1em;
+}
+.switch {
+    float: right;
+    clear: both;
+}
+/********************************
+*            CARDS              *
+*********************************/
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.cards {
+    background-color: var(--card-background);
+    text-align: center;
+    border-radius: 5px;
+    align-items: center;
+}
+.cards:hover {
+    background-color: var(--card-background-highlight);
+}
+.cards-container {
+    background-color: #999;
+    margin: 2em;
+    padding: 2em;
+    display: grid;
+
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(3, 33.33%);
 }
