@@ -67,39 +67,39 @@ function displayData(cityData) {
     //get body
     const body = document.getElementById("weather-details");
     const container = document.createElement("div");
-    container.className = "cards";
+    container.className = "card";
 
-    const cardsContainer = document.createElement("div");
-    cardsContainer.className = "cards-inner-container";
     // city name
     const cityh3 = document.createElement("h3");
+    cityh3.className = "city";
     cityh3.innerHTML = city;
     container.appendChild(cityh3);
 
     // AQI
     const aqih2 = document.createElement("h2");
-    aqih2.innerHTML = aqi;
+    aqih2.className = "aqi";
+    aqih2.innerHTML = `AQI ${aqi}`;
     container.appendChild(aqih2);
 
     // temperature
     const temph3 = document.createElement("h3");
+    temph3.className = "temp";
     temph3.innerHTML = temp;
     container.appendChild(temph3);
 
     // humidity
     const humidityp = document.createElement("p");
+    humidityp.className = "humidity";
     humidityp.innerHTML = humidity;
     container.appendChild(humidityp);
 
     // pressure
     const pressurep = document.createElement("p");
+    pressurep.className = "pressure";
     pressurep.innerHTML = pressure;
     container.appendChild(pressurep);
 
-    // Append the containe rto the inner container
-    cardsContainer.appendChild(container);
-    // append the container to body
-    body.appendChild(cardsContainer);
+    body.appendChild(container);
 }
 
 /**

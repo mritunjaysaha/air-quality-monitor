@@ -1,11 +1,30 @@
 :root {
     --LimeGreen: hsl(163, 72%, 41%);
-    --BrightRed: hsl(356, 69%, 56%);
     --Facebook: #4267b2;
     --Twitter: hsl(203, 89%, 53%);
     --Instagram1: hsl(60, 20%, 1%);
     --Instagram2: hsl(329, 70%, 58%);
-    --YouTube: hsl(348, 97%, 39%);
+
+    /* 0-50 good GREEN  bg:b0eacd top:216353*/
+    --green-bg: #b0eacd;
+    --green-top: #216353;
+    /* 51-100 moderate YELLOW  bg: f6f578 top: f6d743*/
+    --yellow-bg: #f6f578;
+    --yellow-top: #f6d743;
+    /* 101-150 bg:ffbd69 top:ff5733 unhealthy for sensitive groups ORANGE*/
+    --orange-bg: #ffbd69;
+    --orange-top: #ff5733;
+    /* 151-200 Unhelthy RED bg:ff4545 top:c50000*/
+    --red-bg: #ff4545;
+    --red-top: #c50000;
+    /* 201-300 Very Unhealthy PURPLE bg: fbcffc top: be79df*/
+    --purple-bg: #fbcffc;
+    --purple-top: #be79df;
+    /* 301-500 Hazourdous BROWN bg:935656 top:6a0000*/
+    --brown-bg: #935656;
+    --brown-top: #6a0000;
+    /* grid padding */
+    --grid-padding: 0.5em;
 }
 * {
     margin: 0;
@@ -58,6 +77,7 @@ body {
     position: relative;
 
     color: var(--main-font);
+    font-family: "Montserrat", sans-serif;
 }
 
 /* 
@@ -76,12 +96,17 @@ MOBILE FIRST CSS DESIGN
     padding: 2em 1em;
 }
 .header h1 {
+    font-family: "Montserrat Subrayada", sans-serif;
     font-size: 1.5em;
     padding-bottom: 1em;
+    font-weight: 700;
 }
 .right {
     display: inline-block;
     padding-top: 1em;
+}
+.right p {
+    color: var(--secondary-font);
 }
 .switch {
     float: right;
@@ -90,26 +115,89 @@ MOBILE FIRST CSS DESIGN
 /********************************
 *            CARDS              *
 *********************************/
-.cards-wrapper {
+.mobile-visible {
+    display: none;
+}
+/****************
+       Cards
+  ***************/
+.cards-container {
     display: flex;
     flex-direction: column;
     position: relative;
 }
-.cards {
-    background-color: var(--card-background);
-    text-align: center;
-    border-radius: 5px;
-    align-items: center;
-}
-.cards:hover {
-    background-color: var(--card-background-highlight);
-}
-.cards-container {
-    background-color: #999;
-    margin: 2em;
-    padding: 2em;
+.card {
+    background: var(--card-background);
+    /* padding: 1.7em 1em 0.5em 1em; */
+    padding: 1em;
+    margin: 1em;
     display: grid;
-
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: repeat(3, 33.33%);
+    text-align: center;
+    font-weight: 300;
+    border-radius: 5px;
+}
+
+.city {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    padding: var(--grid-padding);
+    /* font-family: "Montserrat", sans-serif; */
+    /* font-size: 300; */
+    font-weight: 400;
+}
+.temp {
+    grid-column-start: 2;
+    grid-row: 1;
+    padding: var(--grid-padding);
+}
+.aqi {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    font-weight: 600;
+    padding: var(--grid-padding);
+}
+.humidity {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    padding: var(--grid-padding);
+}
+.pressure {
+    grid-column-start: 2;
+    padding: var(--grid-padding);
+}
+.card:hover {
+    background-color: var(--card-background-highlight);
+}
+
+@media only screen and (min-width: 576px) {
+    /* header */
+    .header {
+        flex-direction: row;
+    }
+    .right {
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 0;
+        margin-left: 60%;
+    }
+    .right p {
+        padding-top: 0.2em;
+        padding-right: 0.5em;
+    }
+    /* hide <hr> */
+    .mobile {
+        display: none;
+    }
+    /* Cards */
+    .cards-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .card {
+        width: 22%;
+        height: 20vh;
+    }
 }
