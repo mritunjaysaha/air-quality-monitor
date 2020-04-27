@@ -5,43 +5,35 @@
     <meta charset="UTF-8">
     <meta name="vieCwport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="./styles/slider.css">
     <link rel="stylesheet" href="./styles/main.css">
 
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
 
 </head>
 
-<body>
+<body id="body">
+
+
+    <header class="header">
+        <div class="left">
+            <h1>Social Media Dashboard</h1>
+            <p>Total Followers: 23,004</p>
+            <hr class="mobile-visible">
+        </div>
+        <div class="right header-slider">
+            <p>Dark Mode</p>
+            <span>
+                <label class="switch">
+                    <input id="theme-switch" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+
+            </span>
+        </div>
+    </header>
     <input id="search" type="text" placeholder="Search box" size="50">
-    <!-- <section class="container" id="nearest-city">
-        <h1>NEAREST CITY</h1>
-        <div id="nearest-city"></div>
-        <div id="aqi"></div>
-        <div id="weather"></div>
-    </section>
-    <section class="container" id="select-city">
-
-        <input id="filter-input" type="text" placeholder="Search">
-        <div id="states">
-        </div>
-        <div id="state-options">
-            <select name="state" id="main-menu">
-                <option value="">Select</option>
-            </select>
-            <select name="state" id="sub-menu">
-                <option value="">Select</option>
-            </select>
-            <button onclick="getSelectValue()">Get</button>
-        </div>
-    </section>
-    <section class="container" id="selected-city">
-
-    </section> -->
-
-
-    <!-- <script src="./nearestcity.js"></script> -->
-    <!-- <script src="./states.js"></script> -->
-
     <script src="./places.js"></script>
 </body>
 

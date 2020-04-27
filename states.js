@@ -50,7 +50,7 @@ const dataOfStates = {
     ],
     Jharkhand: ["Jorapokhar"],
     Karnataka: [
-        "Bengaluru",
+        "Bengaluru",zz
         "Chik Ballapur",
         "Closepet",
         "Gulbarga",

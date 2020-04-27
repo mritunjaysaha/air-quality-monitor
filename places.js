@@ -34,12 +34,68 @@ async function getCityData(city, state, country) {
 
     if (processedResponse.status === "success") {
         console.log(processedResponse);
+        displayData(processedResponse);
     } else {
         console.log("error");
     }
 }
 
 // Display data
+function displayData(cityData) {
+    console.log(cityData.status);
+
+    //get city name
+    const city = cityData.data.city;
+    //get weather of that city
+    const weather = cityData.data.current.weather;
+    //get weather details
+    const humidity = weather.hu;
+    const pressure = weather.pr;
+    const temp = weather.tp;
+    //get AQI
+    const aqi = cityData.data.current.pollution.aqius;
+
+    console.log(city);
+    // console.log(weather);
+    console.log(aqi);
+
+    console.log(humidity);
+    console.log(pressure);
+    console.log(temp);
+
+    // Create a div container that will store the other elements
+    //get body
+    const body = document.getElementById("body");
+    const container = document.createElement("div");
+
+    // city name
+    const cityh3 = document.createElement("h3");
+    cityh3.innerHTML = city;
+    container.appendChild(cityh3);
+
+    // AQI
+    const aqih2 = document.createElement("h2");
+    aqih2.innerHTML = aqi;
+    container.appendChild(aqih2);
+
+    // temperature
+    const temph3 = document.createElement("h3");
+    temph3.innerHTML = temp;
+    container.appendChild(temph3);
+
+    // humidity
+    const humidityp = document.createElement("p");
+    humidityp.innerHTML = humidity;
+    container.appendChild(humidityp);
+
+    // pressure
+    const pressurep = document.createElement("p");
+    pressurep.innerHTML = pressure;
+    container.appendChild(pressurep);
+
+    // append the container to body
+    body.appendChild(container);
+}
 
 /**
  * Create a button that will create the data for multiple
