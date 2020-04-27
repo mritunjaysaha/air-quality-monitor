@@ -6,22 +6,22 @@
     --Instagram2: hsl(329, 70%, 58%);
 
     /* 0-50 good GREEN  bg:b0eacd top:216353*/
-    --green-bg: #b0eacd;
-    --green-top: #216353;
+    --green-bg: #b0eacd50;
+    --green-top: #0fb641;
     /* 51-100 moderate YELLOW  bg: f6f578 top: f6d743*/
-    --yellow-bg: #f6f578;
+    --yellow-bg: #d8d82c50;
     --yellow-top: #f6d743;
     /* 101-150 bg:ffbd69 top:ff5733 unhealthy for sensitive groups ORANGE*/
-    --orange-bg: #ffbd69;
+    --orange-bg: #ffbd6950;
     --orange-top: #ff5733;
     /* 151-200 Unhelthy RED bg:ff4545 top:c50000*/
-    --red-bg: #ff4545;
+    --red-bg: #ff454550;
     --red-top: #c50000;
     /* 201-300 Very Unhealthy PURPLE bg: fbcffc top: be79df*/
-    --purple-bg: #fbcffc;
+    --purple-bg: #fbcffc50;
     --purple-top: #be79df;
     /* 301-500 Hazourdous BROWN bg:935656 top:6a0000*/
-    --brown-bg: #935656;
+    --brown-bg: #93565650;
     --brown-top: #6a0000;
     /* grid padding */
     --grid-padding: 0.5em;
@@ -55,6 +55,7 @@ body {
     --main-background-top: hsl(232, 19%, 15%);
     --main-font: white;
     --secondary-font: hsl(228, 34%, 66%);
+    --cards-font: #acacac;
 }
 
 .light {
@@ -63,6 +64,7 @@ body {
     --main-background: white;
     --main-font: hsl(230, 17%, 14%);
     --secondary-font: hsl(228, 12%, 44%);
+    --cards-font: #000;
 }
 
 body {
@@ -137,6 +139,7 @@ MOBILE FIRST CSS DESIGN
     text-align: center;
     font-weight: 300;
     border-radius: 5px;
+    color: var(--cards-font);
 }
 
 .city {
@@ -169,6 +172,31 @@ MOBILE FIRST CSS DESIGN
 }
 .card:hover {
     background-color: var(--card-background-highlight);
+}
+/* cards background and border-top */
+.green {
+    background-color: var(--green-bg);
+    border-top: 5px solid var(--green-top);
+}
+.yellow {
+    background-color: var(--yellow-bg);
+    border-top: 5px solid var(--yellow-top);
+}
+.red {
+    background-color: var(--red-bg);
+    border-top: 5px solid var(--red-top);
+}
+.orange {
+    background-color: var(--orange-bg);
+    border-top: 5px solid var(--orange-top);
+}
+.purple {
+    background-color: var(--purple-bg);
+    border-top: 5px solid var(--purple-top);
+}
+.brown {
+    background-color: var(--brown-bg);
+    border-top: 5px solid var(--brown-top);
 }
 
 @media only screen and (min-width: 576px) {

@@ -53,7 +53,7 @@ function displayData(cityData) {
     const pressure = weather.pr;
     const temp = weather.tp;
     //get AQI
-    const aqi = cityData.data.current.pollution.aqius;
+    let aqi = cityData.data.current.pollution.aqius;
 
     console.log(city);
     // console.log(weather);
@@ -76,8 +76,24 @@ function displayData(cityData) {
     container.appendChild(cityh3);
 
     // AQI
+
     const aqih2 = document.createElement("h2");
     aqih2.className = "aqi";
+    aqi = 320;
+    if (aqi <= 50) {
+        container.classList.add("green");
+    } else if (aqi <= 100) {
+        container.classList.add("yellow");
+    } else if (aqi <= 150) {
+        container.classList.add("orange");
+    } else if (aqi <= 200) {
+        container.classList.add("red");
+    } else if (aqi <= 300) {
+        container.classList.add("purple");
+    } else if (aqi <= 500) {
+        container.classList.add("brown");
+    }
+
     aqih2.innerHTML = `AQI ${aqi}`;
     container.appendChild(aqih2);
 
