@@ -1,5 +1,3 @@
-console.log("Theme switch");
-
 const themeSwitcher = document.getElementById("theme-switch");
 
 themeSwitcher.checked = false;

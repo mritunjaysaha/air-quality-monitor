@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Air Quality Monitor</title>
     <link rel="stylesheet" href="./styles/slider.css">
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/responsive.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&family=Montserrat:wght@300;400;600&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
-
+    <script src="https://kit.fontawesome.com/5c77b9e253.js" crossorigin="anonymous"></script>
 </head>
+<!-- <img src="./assets/city.svg"> -->
 
 <body>
     <header class="header">
@@ -31,13 +33,19 @@
 
         </div>
     </header>
-    <input id="search" type="text" placeholder="Search box">
+    <div class="search">
+        <button class="search-button" onclick="getNearestCity()">GET NEAREST CITY</button>
+        <p class="search-or">or</p>
+        <input class="input-search" id="search" type="text" placeholder="Search box">
+    </div>
     <section id="weather-details" class="cards-container">
 
     </section>
     <!--  -->
     <script src="./themeswitcher.js"></script>
     <script src="./places.js"></script>
+
+
 </body>
 
 </html>

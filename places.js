@@ -23,8 +23,23 @@
         getCityData(city, state, country);
     });
 })();
+/**
+ * get weather data
+ */
+let idCount = 0;
+
 // Nearest City
 
+async function getNearestCity() {
+    const urlNearestCity =
+        "https://api.airvisual.com/v2/nearest_city?key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0";
+
+    const response = await fetch(urlNearestCity);
+    const processedResponse = await response.json();
+
+    console.log("nearest city", processedResponse);
+    displayData(processedResponse);
+}
 // Get data of cities
 async function getCityData(city, state, country) {
     const urlCityData = `https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0`;
@@ -68,11 +83,12 @@ function displayData(cityData) {
     const body = document.getElementById("weather-details");
     const container = document.createElement("div");
     container.className = "card";
+    container.id = idCount;
 
     // city name
     const cityh3 = document.createElement("h3");
     cityh3.className = "city";
-    cityh3.innerHTML = city;
+    cityh3.innerHTML = `<i class="uil uil-building"></i>${city}`;
     container.appendChild(cityh3);
 
     // AQI
@@ -99,25 +115,41 @@ function displayData(cityData) {
     // temperature
     const temph3 = document.createElement("h3");
     temph3.className = "temp";
-    temph3.innerHTML = temp;
+    temph3.innerHTML = `${temp}<i class="uil uil-celsius"></i>`;
     container.appendChild(temph3);
 
     // humidity
     const humidityp = document.createElement("p");
     humidityp.className = "humidity";
-    humidityp.innerHTML = humidity;
+    humidityp.innerHTML = `<i class="uil uil-tear"></i>${humidity}`;
     container.appendChild(humidityp);
 
     // pressure
     const pressurep = document.createElement("p");
     pressurep.className = "pressure";
-    pressurep.innerHTML = pressure;
+    pressurep.innerHTML = `<i class="uil uil-dashboard"></i>${pressure}`;
     container.appendChild(pressurep);
+
+    // <i class="uil uil-trash-alt"></i>
+    // delete
+    const deleteIcon = document.createElement("span");
+    deleteIcon.innerHTML = `<i class="uil uil-trash-alt" onclick="removeElement(${idCount})"></i>`;
+    deleteIcon.classList.add("delete");
+    container.appendChild(deleteIcon);
 
     body.appendChild(container);
 }
 
-/**
- * Create a button that will create the data for multiple
- * states.
- */
+//  delete the card
+function removeElement(parentDiv) {
+    console.log(parentDiv);
+    if (document.getElementById(parentDiv)) {
+        var parent = document.getElementById(parentDiv);
+        var div = document.getElementById("weather-details");
+        div.removeChild(parent);
+    } else {
+        alert("Child div has already been removed or does not exist.");
+        return false;
+    }
+    console.log("remove btn clicked");
+}
