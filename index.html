@@ -7,16 +7,21 @@
     <title>Air Quality Monitor</title>
     <link rel="stylesheet" href="./styles/slider.css">
     <link rel="stylesheet" href="./styles/main.css">
-    <link rel="stylesheet" href="./styles/responsive.css">
+
+    <!-- iconsout -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
 
+    <!-- google fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&family=Montserrat:wght@300;400;600&display=swap"
         rel="stylesheet">
+    <!-- algolia  -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/docsearch.js@{{docSearchJSVersion}}/dist/cdn/docsearch.min.css" />
+
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
-    <script src="https://kit.fontawesome.com/5c77b9e253.js" crossorigin="anonymous"></script>
+
 </head>
-<!-- <img src="./assets/city.svg"> -->
 
 <body>
     <header class="header">
@@ -36,12 +41,14 @@
     <div class="search">
         <button class="search-button" onclick="getNearestCity()">GET NEAREST CITY</button>
         <p class="search-or">or</p>
-        <input class="input-search" id="search" type="text" placeholder="Search box">
+        <input class="search-input" id="search" type="text" placeholder="Search box">
     </div>
     <section id="weather-details" class="cards-container">
 
     </section>
-    <!--  -->
+    <!-- algolia docsearch -->
+    <script src="https://cdn.jsdelivr.net/npm/docsearch.js@{{docSearchJSVersion}}/dist/cdn/docsearch.min.js"></script>
+    <!-- my scripts -->
     <script src="./themeswitcher.js"></script>
     <script src="./places.js"></script>
 

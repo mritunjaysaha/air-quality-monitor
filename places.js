@@ -20,45 +20,117 @@
         const country = e.suggestion.country.toUpperCase();
 
         console.log(city, state, country);
-        getCityData(city, state, country);
+
+        if (city != undefined && state != undefined && country != undefined) {
+            console.log("success");
+            getCityData(city, state, country, idCount);
+            // if the search was successful then store the details in local storage
+            const obj = createWeatherObject(city, state, country, idCount);
+            localStorage.setItem("obj", JSON.stringify(object));
+            localStorage.setItem("idCount", idCount);
+            idCount++;
+            console.log("idCount: ", idCount);
+        } else {
+            console.log("fail");
+        }
     });
 })();
+
+/**
+ * LOCAL STORAGE
+ */
+
+//  store the cards created by the search box
+let idCount;
+const localStorageIdCount = localStorage.getItem("idCount");
+if (localStorageIdCount != null) {
+    idCount = parseInt(localStorageIdCount);
+    console.log("idCount: ", idCount);
+} else {
+    console.log("localStorageIdCount: ", localStorageIdCount);
+    idCount = 0;
+}
+
+const object = {
+    id: [],
+    city: [],
+    state: [],
+    country: [],
+};
+
+const storedData = JSON.parse(localStorage.getItem("obj"));
+if (storedData != null) {
+    console.log("storedData", storedData);
+    object.id = storedData.id;
+    object.city = storedData.city;
+    object.state = storedData.state;
+    object.country = storedData.country;
+    console.log(storedData.city);
+    console.log("object.city: ", object.city);
+} else {
+    console.log("stored data == null");
+}
+
+function createWeatherObject(city, state, country, divIdCount) {
+    object.id.push(divIdCount);
+    object.city.push(city);
+    object.state.push(state);
+    object.country.push(country);
+    console.log("createObject: ", object);
+    return object;
+}
+
+// store the cards created by GET NEAREST CITY button
+let idCountNearestCity;
+const localStorageNearestCityId = localStorage.getItem("idCountNearestCity");
+if (localStorageNearestCityId != null) {
+    idCountNearestCity = parseInt(localStorageNearestCityId);
+    console.log("idCountNearestCity: ", idCountNearestCity);
+} else {
+    console.log("localStorageNearestCityId == null");
+}
+const nearestCityObject = {
+    id: [],
+    lat: [],
+    long: [],
+};
+
+const storedDataNearestCity = JSON.parse(localStorage.getItem("nearestCityObject")
+
 /**
  * get weather data
  */
-let idCount = 0;
 
 // Nearest City
-
 async function getNearestCity() {
     const urlNearestCity =
         "https://api.airvisual.com/v2/nearest_city?key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0";
 
+    // store the location coordinates of the nearest city in the local storage
     const response = await fetch(urlNearestCity);
     const processedResponse = await response.json();
 
     console.log("nearest city", processedResponse);
     displayData(processedResponse);
 }
-// Get data of cities
-async function getCityData(city, state, country) {
+// Get data of cities`
+async function getCityData(city, state, country, divIdCount) {
     const urlCityData = `https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0`;
 
     const response = await fetch(urlCityData);
     const processedResponse = await response.json();
-
+    console.log("getCityData", object);
     if (processedResponse.status === "success") {
         console.log(processedResponse);
-        displayData(processedResponse);
+        displayData(processedResponse, divIdCount);
     } else {
         console.log("error");
     }
 }
 
 // Display data
-function displayData(cityData) {
+function displayData(cityData, divIdCount) {
     console.log(cityData.status);
-
     //get city name
     const city = cityData.data.city;
     //get weather of that city
@@ -70,21 +142,52 @@ function displayData(cityData) {
     //get AQI
     const aqi = cityData.data.current.pollution.aqius;
 
-    console.log(city);
-    // console.log(weather);
-    console.log(aqi);
+    // console.log(city);
+    // // console.log(weather);
+    // console.log(aqi);
 
-    console.log(humidity);
-    console.log(pressure);
-    console.log(temp);
+    // console.log(humidity);
+    // console.log(pressure);
+    // console.log(temp);
 
-    // Create a div container that will store the other elements
     //get body
     const body = document.getElementById("weather-details");
     const container = document.createElement("div");
     container.className = "card";
-    container.id = idCount;
+    container.id = divIdCount;
+    console.log(
+        "container.id: " +
+            container.id +
+            " divIdCount: " +
+            divIdCount +
+            "typeof: " +
+            typeof container.id
+    );
+    console.log("card id: ", divIdCount);
 
+    setDataInCard(
+        city,
+        aqi,
+        humidity,
+        pressure,
+        temp,
+        container,
+        body,
+        divIdCount
+    );
+}
+
+function setDataInCard(
+    city,
+    aqi,
+    humidity,
+    pressure,
+    temp,
+    container,
+    body,
+    divIdCount
+) {
+    // Create a div container that will store the other elements
     // city name
     const cityh3 = document.createElement("h3");
     cityh3.className = "city";
@@ -133,7 +236,8 @@ function displayData(cityData) {
     // <i class="uil uil-trash-alt"></i>
     // delete
     const deleteIcon = document.createElement("span");
-    deleteIcon.innerHTML = `<i class="uil uil-trash-alt" onclick="removeElement(${idCount})"></i>`;
+    deleteIcon.innerHTML = `<i class="uil uil-trash-alt" onclick="removeElement(${divIdCount})"></i>`;
+    console.log("delete: ", divIdCount);
     deleteIcon.classList.add("delete");
     container.appendChild(deleteIcon);
 
@@ -142,14 +246,75 @@ function displayData(cityData) {
 
 //  delete the card
 function removeElement(parentDiv) {
-    console.log(parentDiv);
-    if (document.getElementById(parentDiv)) {
+    console.log(
+        "parentId: ",
+        parentDiv,
+        "typeof: ",
+        typeof parentDiv.toString()
+    );
+    console.log("removeElement(): ", object);
+
+    console.log(object.id.indexOf(parseInt(parentDiv)));
+
+    if (document.getElementById(parentDiv.toString())) {
         var parent = document.getElementById(parentDiv);
         var div = document.getElementById("weather-details");
         div.removeChild(parent);
+
+        // remove the details of a id
+        const deleteIndex = object.id.indexOf(parseInt(parentDiv));
+        console.log("deleteIndex: ", deleteIndex);
+        // delete object.id[object.id.indexOf(parseInt(parentDiv))];
+        // myFish.splice(3, 1)
+        const deleteCard = (deleteIndex) => {
+            object.id.splice(deleteIndex, 1);
+            object.city.splice(deleteIndex, 1);
+            object.state.splice(deleteIndex, 1);
+            object.country.splice(deleteIndex, 1);
+            localStorage.setItem("obj", JSON.stringify(object));
+        };
+        deleteCard(deleteIndex);
+        console.log("removeElement(): ", object);
     } else {
         alert("Child div has already been removed or does not exist.");
         return false;
     }
     console.log("remove btn clicked");
 }
+
+// local storage
+function createFromLocalStorage() {
+    console.log(JSON.parse(localStorage.getItem("obj")));
+
+    if (JSON.parse(localStorage.getItem("obj")) != null) {
+        const localData = JSON.parse(localStorage.getItem("obj"));
+
+        console.log("createFromLocalStorage() called:", localData);
+
+        const len = localData.city.length;
+        console.log("len", len);
+        for (let i = 0; i < len; i++) {
+            createCard(localData, i, localData.id[i]);
+        }
+    } else {
+        console.log("local storage empty");
+    }
+}
+
+function createCard(localData, count) {
+    console.log(
+        "createCard(): ",
+        localData,
+        "count: ",
+        count,
+        "id: ",
+        localData.id[count]
+    );
+    const city = localData.city[count];
+    const state = localData.state[count];
+    const country = localData.country[count];
+    getCityData(city, state, country, localData.id[count]);
+    console.log("card created");
+}
+
+window.onload = createFromLocalStorage();

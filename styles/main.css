@@ -9,11 +9,11 @@
     --green-bg: #b0eacd50;
     --green-top: #0fb641;
     /* 51-100 moderate YELLOW  bg: f6f578 top: f6d743*/
-    --yellow-bg: #fde4008e;
-    --yellow-top: #f6d743;
+    --yellow-bg: #e7ff0d63;
+    --yellow-top: #faea5b;
     /* 101-150 bg:ffbd69 top:ff5733 unhealthy for sensitive groups ORANGE*/
     --orange-bg: #ffbd6950;
-    --orange-top: #ff5733;
+    --orange-top: #fc7c5f;
     /* 151-200 Unhelthy RED bg:ff4545 top:c50000*/
     --red-bg: #ff454550;
     --red-top: #c50000;
@@ -178,28 +178,11 @@ MOBILE FIRST CSS DESIGN
     grid-column: 1 / 3;
     padding: var(--grid-padding);
 }
-/* icons */
-.city-img {
-    height: 1em;
-    padding-right: 0.2em;
-}
 
-.humidity-img {
-    /* height: var(--icon-height); */
-    height: 1.5em;
-    padding-right: var(--icon-padding);
-    /* color: aliceblue; */
-    fill: #fff;
-}
-.pressure-img {
-    /* height: var(--icon-height); */
-    height: 1.5em;
-    padding-right: 0.5em;
-}
-/* fontawesome delete icon */
-.fa-trash-alt {
-    font-size: 1.25em;
-}
+/*******************************
+*        weather icons         *
+********************************/
+
 /* iconsout */
 .uil-building {
     font-size: 1em;
@@ -209,17 +192,13 @@ MOBILE FIRST CSS DESIGN
 }
 .uil-celsius {
     font-size: 1em;
-    padding-left: var(--icon-padding);
 }
 .uil-tear {
     font-size: 1.5em;
 }
 .uil-trash-alt {
-    font-size: 1.25em;
+    font-size: 1.5em;
 }
-/* .card:hover {
-    background-color: var(--card-background-highlight);
-} */
 /* cards background and border-top */
 .green {
     background-color: var(--green-bg);
@@ -228,7 +207,6 @@ MOBILE FIRST CSS DESIGN
 .yellow {
     background-color: var(--yellow-bg);
     border-top: 5px solid var(--yellow-top);
-    /* color: #fff; */
 }
 .red {
     background-color: var(--red-bg);
@@ -257,6 +235,7 @@ MOBILE FIRST CSS DESIGN
 .search-button {
     width: 100%;
     height: 3em;
+    border-radius: 3px;
 }
 .search-or {
     padding: 1em;
@@ -264,7 +243,11 @@ MOBILE FIRST CSS DESIGN
     font-weight: 600;
 }
 .search-input {
-    height: 3em;
+    height: 2.5em;
+}
+/* algolia search dropdown*/
+.ap-dropdown-menu {
+    background-color: rgb(3, 4, 70);
 }
 
 @media only screen and (min-width: 576px) {
@@ -294,7 +277,7 @@ MOBILE FIRST CSS DESIGN
     }
     .card {
         width: 22%;
-        height: 20vh;
+        /* height: 20vh; */
     }
 
     /* search */
@@ -303,13 +286,10 @@ MOBILE FIRST CSS DESIGN
         align-items: center;
     }
     .search-button {
-        width: 600px;
+        width: 100%;
         height: 3em;
     }
     .search-or {
         padding: 0 2em;
-    }
-    .search-input {
-        width: 600px;
     }
 }
