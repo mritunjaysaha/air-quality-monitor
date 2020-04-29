@@ -22,11 +22,11 @@
         console.log(city, state, country);
 
         if (city != undefined && state != undefined && country != undefined) {
-            console.log("success");
+            // console.log("success");
             getCityData(city, state, country, idCount);
             // if the search was successful then store the details in local storage
             const obj = createWeatherObject(city, state, country, idCount);
-            localStorage.setItem("obj", JSON.stringify(object));
+            localStorage.setItem("obj", JSON.stringify(obj));
             localStorage.setItem("idCount", idCount);
             idCount++;
             console.log("idCount: ", idCount);
@@ -81,22 +81,40 @@ function createWeatherObject(city, state, country, divIdCount) {
 }
 
 // store the cards created by GET NEAREST CITY button
-let idCountNearestCity;
-const localStorageNearestCityId = localStorage.getItem("idCountNearestCity");
-if (localStorageNearestCityId != null) {
-    idCountNearestCity = parseInt(localStorageNearestCityId);
-    console.log("idCountNearestCity: ", idCountNearestCity);
-} else {
-    console.log("localStorageNearestCityId == null");
-}
-const nearestCityObject = {
-    id: [],
-    lat: [],
-    long: [],
-};
+// let idCountNearestCity;
+// const localStorageNearestCityId = localStorage.getItem("idCountNearestCity");
+// if (localStorageNearestCityId != null) {
+//     idCountNearestCity = parseInt(localStorageNearestCityId);
+//     console.log("idCountNearestCity: ", idCountNearestCity);
+// } else {
+//     console.log("localStorageNearestCityId == null");
+// }
+// const nearestCityObject = {
+//     id: [],
+//     lat: [],
+//     long: [],
+// };
 
-const storedDataNearestCity = JSON.parse(localStorage.getItem("nearestCityObject")
+// const storedDataNearestCity = JSON.parse(
+//     localStorage.getItem("nearestCityObject")
+// );
+// if (storedDataNearestCity != null) {
+//     console.log("storedDataNearestCity: ", storedDataNearestCity);
 
+//     nearestCityObject.id = storedDataNearestCity.id;
+//     nearestCityObject.lat = storedDataNearestCity.lat;
+//     nearestCityObject.long = storedDataNearestCity.long;
+//     console.log("nearestCityObject stored: ", nearestCityObject);
+// } else {
+//     console.log("nearest city storage empty");
+// }
+
+// function createNearestCityWeatherObject(idNc, lat, long) {
+//     nearestCityObject.id.push(idNc);
+//     nearestCityObject.lat.push(lat);
+//     nearestCityObject.long.push(long);
+//     console.log("createNearestCityWeatherObject()", nearestCityObject);
+// }
 /**
  * get weather data
  */
@@ -110,8 +128,20 @@ async function getNearestCity() {
     const response = await fetch(urlNearestCity);
     const processedResponse = await response.json();
 
+    const city = processedResponse.data.city;
+    const state = processedResponse.data.state;
+    const country = processedResponse.data.country;
     console.log("nearest city", processedResponse);
-    displayData(processedResponse);
+    console.log(city);
+    console.log(state);
+    console.log(country);
+
+    const obj = createWeatherObject(city, state, country, idCount);
+    localStorage.setItem("obj", JSON.stringify(obj));
+    localStorage.setItem("idCount", idCount);
+    idCount++;
+    console.log("idCount: ", idCount);
+    displayData(processedResponse, idCount);
 }
 // Get data of cities`
 async function getCityData(city, state, country, divIdCount) {
@@ -272,6 +302,7 @@ function removeElement(parentDiv) {
             object.state.splice(deleteIndex, 1);
             object.country.splice(deleteIndex, 1);
             localStorage.setItem("obj", JSON.stringify(object));
+            console.log("remove idCount: ", idCount);
         };
         deleteCard(deleteIndex);
         console.log("removeElement(): ", object);
