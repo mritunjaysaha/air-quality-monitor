@@ -9,13 +9,11 @@ function clickHandler() {
 
         themeSwitchRound.classList.add("local-dark");
         themeSwitchRound.classList.remove("local-light");
-        // console.log("dark");
     } else {
         localStorage.setItem("theme", "light");
         document.body.className = "light";
         themeSwitchRound.classList.add("local-light");
         themeSwitchRound.classList.remove("local-dark");
-        // console.log("light");
     }
 }
 themeSwitcher.addEventListener("click", clickHandler);

@@ -54,7 +54,6 @@ body {
 */
 .dark {
     --suggestion: hsl(228, 28%, 20%);
-    --card-background-highlight: hsl(228, 28%, 30%);
     --main-background: hsl(230, 17%, 14%);
     --main-background-top: hsl(232, 19%, 15%);
     --main-font: white;
@@ -64,7 +63,6 @@ body {
 
 .light {
     --suggestion: hsl(231, 35%, 93%);
-    --card-background-highlight: hsl(227, 47%, 91%);
     --main-background: white;
     --main-font: hsl(230, 17%, 14%);
     --secondary-font: hsl(228, 12%, 44%);

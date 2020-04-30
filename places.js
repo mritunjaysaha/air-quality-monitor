@@ -53,8 +53,6 @@ if (storedData != null) {
     object.city = storedData.city;
     object.state = storedData.state;
     object.country = storedData.country;
-} else {
-    console.log("stored data == null");
 }
 
 function createWeatherObject(city, state, country, divIdCount) {
@@ -62,7 +60,6 @@ function createWeatherObject(city, state, country, divIdCount) {
     object.city.push(city);
     object.state.push(state);
     object.country.push(country);
-    console.log("createObject: ", object);
     return object;
 }
 /**
@@ -220,11 +217,7 @@ function removeElement(parentDiv) {
         // remove the details of a id
         const deleteIndex = object.id.indexOf(parseInt(parentDiv));
         deleteCard(deleteIndex);
-    } else {
-        alert("Child div has already been removed or does not exist.");
-        return false;
     }
-
     function deleteCard(deleteIndex) {
         object.id.splice(deleteIndex, 1);
         object.city.splice(deleteIndex, 1);
@@ -254,7 +247,6 @@ function createCard(localData, count) {
     const state = localData.state[count];
     const country = localData.country[count];
     getCityData(city, state, country, localData.id[count]);
-    console.log("card created");
 }
 
 window.onload = createFromLocalStorage();
