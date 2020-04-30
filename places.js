@@ -128,7 +128,6 @@ function displayData(cityData, divIdCount) {
 
     //get AQI
     const aqi = cityData.data.current.pollution.aqius;
-
     //get body
     const body = document.getElementById("weather-details");
     const container = document.createElement("div");

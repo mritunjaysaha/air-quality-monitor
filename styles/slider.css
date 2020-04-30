@@ -71,3 +71,9 @@
 #theme-switch:checked + .round::before {
     background-color: hsl(230, 17%, 14%);
 }
+@media only screen and (min-width: 576px) and (max-width: 1024px) {
+    .switch {
+        width: 80px;
+        padding-right: 1em;
+    }
+}

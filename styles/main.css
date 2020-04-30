@@ -63,7 +63,7 @@ body {
 }
 
 .light {
-    --suggestion: hsl(227, 47%, 96%);
+    --suggestion: hsl(231, 35%, 93%);
     --card-background-highlight: hsl(227, 47%, 91%);
     --main-background: white;
     --main-font: hsl(230, 17%, 14%);
