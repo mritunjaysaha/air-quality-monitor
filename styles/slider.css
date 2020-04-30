@@ -15,6 +15,8 @@
     --slider--position: 10px;
 }
 .local-light {
+    --toggle-background: var(--toggle-light);
+    --slider-position: 32px;
 }
 /* The switch - the box around the slider */
 
