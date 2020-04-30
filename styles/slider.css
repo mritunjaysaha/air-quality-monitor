@@ -5,12 +5,17 @@
         hsl(210, 78%, 56%),
         hsl(146, 68%, 55%)
     );
+    --toggle-background: var(--toggle-light);
+    --slider-position: 32px;
 
     /* set slider position to 10px when the localstorage has theme = dark and toggle background to toggle dark */
-    --slider-position: 32px;
-    --toggle-background: var(--toggle-dark);
 }
-
+.local-dark {
+    --toggle-background: var(--toggle-dark);
+    --slider--position: 10px;
+}
+.local-light {
+}
 /* The switch - the box around the slider */
 
 .switch {
@@ -42,7 +47,7 @@
     content: "";
     height: 20px;
     width: 20px;
-    left: 32px;
+    left: var(--slider-position);
     bottom: 5px;
     background-color: #fff;
     transition: 0.4s;

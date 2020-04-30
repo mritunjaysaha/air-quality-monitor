@@ -368,7 +368,6 @@ function createCard(localData, count) {
 window.onload = getPreviousTheme();
 
 // get the theme switcher variables
-let root = document.documentElement;
 function getPreviousTheme() {
     const localStorageTheme = localStorage.getItem("theme");
     console.log("getPreviousTheme: ", localStorageTheme);
@@ -376,5 +375,18 @@ function getPreviousTheme() {
     if (localStorageTheme != null) {
         console.log(typeof localStorageTheme);
         document.body.className = localStorageTheme;
+        if (localStorageTheme === "dark") {
+            const themeSwitchRound = document.getElementById(
+                "theme-switch-round"
+            );
+            console.log(themeSwitchRound);
+            console.log(themeSwitchRound.classList);
+            themeSwitchRound.classList.add("local-dark");
+            console.log(themeSwitchRound.classList);
+
+            const themeSwitch = document.getElementById("theme-switch");
+            themeSwitch.checked = true;
+        }
+    } else {
     }
 }
