@@ -1,6 +1,14 @@
 :root {
     --toggle-light: hsl(230, 22%, 74%);
-    --toggle-dark: linear gradient hsl(210, 78%, 56%) to hsl(146, 68%, 55%);
+    --toggle-dark: linear-gradient(
+        90grad,
+        hsl(210, 78%, 56%),
+        hsl(146, 68%, 55%)
+    );
+
+    /* set slider position to 10px when the localstorage has theme = dark and toggle background to toggle dark */
+    --slider-position: 32px;
+    --toggle-background: var(--toggle-dark);
 }
 
 /* The switch - the box around the slider */
@@ -25,7 +33,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--toggle-light);
+    background-color: var(--toggle-background);
     transition: 0.4s;
 }
 

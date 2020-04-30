@@ -322,10 +322,26 @@ function createFromLocalStorage() {
 
         console.log("createFromLocalStorage() called:", localData);
 
-        const len = localData.city.length;
+        const len = localData.id.length;
         console.log("len", len);
-        for (let i = 0; i < len; i++) {
-            createCard(localData, i, localData.id[i]);
+        // for (let i = 0; i < len; i++) {
+        //     createCard(localData, i, localData.id[i]);
+        // }
+
+        for (let count = 0; count < len; count++) {
+            console.log(
+                "createCard(): ",
+                localData,
+                "count: ",
+                count,
+                "id: ",
+                localData.id[count]
+            );
+            const city = localData.city[count];
+            const state = localData.state[count];
+            const country = localData.country[count];
+            getCityData(city, state, country, localData.id[count]);
+            console.log("card created");
         }
     } else {
         console.log("local storage empty");
@@ -348,4 +364,17 @@ function createCard(localData, count) {
     console.log("card created");
 }
 
-window.onload = createFromLocalStorage();
+// window.onload = createFromLocalStorage();
+window.onload = getPreviousTheme();
+
+// get the theme switcher variables
+let root = document.documentElement;
+function getPreviousTheme() {
+    const localStorageTheme = localStorage.getItem("theme");
+    console.log("getPreviousTheme: ", localStorageTheme);
+
+    if (localStorageTheme != null) {
+        console.log(typeof localStorageTheme);
+        document.body.className = localStorageTheme;
+    }
+}
