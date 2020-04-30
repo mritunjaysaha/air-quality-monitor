@@ -224,7 +224,6 @@ function setDataInCard(
     // delete
     const deleteIcon = document.createElement("span");
     deleteIcon.innerHTML = `<i class="uil uil-trash-alt" onclick="removeElement(${divIdCount})"></i>`;
-    // console.log("delete: ", divIdCount);
     deleteIcon.classList.add("delete");
     container.appendChild(deleteIcon);
 
@@ -233,16 +232,6 @@ function setDataInCard(
 
 //  delete the card
 function removeElement(parentDiv) {
-    console.log(
-        "parentId: ",
-        parentDiv,
-        "typeof: ",
-        typeof parentDiv.toString()
-    );
-    // console.log("removeElement(): ", object);
-
-    // console.log(object.id.indexOf(parseInt(parentDiv)));
-
     if (document.getElementById(parentDiv.toString())) {
         var parent = document.getElementById(parentDiv);
         var div = document.getElementById("weather-details");
@@ -250,9 +239,7 @@ function removeElement(parentDiv) {
 
         // remove the details of a id
         const deleteIndex = object.id.indexOf(parseInt(parentDiv));
-        // console.log("deleteIndex: ", deleteIndex);
         deleteCard(deleteIndex);
-        // console.log("removeElement(): ", object);
     } else {
         alert("Child div has already been removed or does not exist.");
         return false;
@@ -266,7 +253,6 @@ function removeElement(parentDiv) {
         localStorage.setItem("obj", JSON.stringify(object));
         console.log("remove idCount: ", idCount);
     }
-    // console.log("remove btn clicked");
 }
 
 // local storage

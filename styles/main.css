@@ -249,9 +249,18 @@ MOBILE FIRST CSS
 .search-input {
     height: 2.5em;
 }
-/* algolia search dropdown*/
+/********************************
+*    algolia search dropdown    *
+*********************************/
 .ap-dropdown-menu {
-    background-color: rgb(3, 4, 70);
+    background-color: transparent;
+}
+.ap-suggestion {
+    background-color: transparent;
+}
+.ap-suggestion.ap-cursor:hover,
+.ap-suggestion.ap-cursor:hover {
+    background-color: rgba(94, 99, 128, 0.1);
 }
 
 @media only screen and (min-width: 576px) {
