@@ -14,12 +14,12 @@
     });
 
     placesAutoComplete.on("change", function resultSelected(e) {
-        console.log(e.suggestion);
+        // console.log(e.suggestion);
         const city = e.suggestion.city;
         const state = e.suggestion.administrative;
         const country = e.suggestion.country.toUpperCase();
 
-        console.log(city, state, country);
+        // console.log(city, state, country);
 
         if (city != undefined && state != undefined && country != undefined) {
             // console.log("success");
@@ -29,9 +29,9 @@
             localStorage.setItem("obj", JSON.stringify(obj));
             localStorage.setItem("idCount", idCount);
             idCount++;
-            console.log("idCount: ", idCount);
+            // console.log("idCount: ", idCount);
         } else {
-            console.log("fail");
+            // console.log("fail");
         }
     });
 })();
@@ -45,9 +45,9 @@ let idCount;
 const localStorageIdCount = localStorage.getItem("idCount");
 if (localStorageIdCount != null) {
     idCount = parseInt(localStorageIdCount);
-    console.log("idCount: ", idCount);
+    // console.log("idCount: ", idCount);
 } else {
-    console.log("localStorageIdCount: ", localStorageIdCount);
+    // console.log("localStorageIdCount: ", localStorageIdCount);
     idCount = 0;
 }
 
@@ -60,13 +60,13 @@ const object = {
 
 const storedData = JSON.parse(localStorage.getItem("obj"));
 if (storedData != null) {
-    console.log("storedData", storedData);
+    // console.log("storedData", storedData);
     object.id = storedData.id;
     object.city = storedData.city;
     object.state = storedData.state;
     object.country = storedData.country;
-    console.log(storedData.city);
-    console.log("object.city: ", object.city);
+    // console.log(storedData.city);
+    // console.log("object.city: ", object.city);
 } else {
     console.log("stored data == null");
 }
@@ -79,42 +79,6 @@ function createWeatherObject(city, state, country, divIdCount) {
     console.log("createObject: ", object);
     return object;
 }
-
-// store the cards created by GET NEAREST CITY button
-// let idCountNearestCity;
-// const localStorageNearestCityId = localStorage.getItem("idCountNearestCity");
-// if (localStorageNearestCityId != null) {
-//     idCountNearestCity = parseInt(localStorageNearestCityId);
-//     console.log("idCountNearestCity: ", idCountNearestCity);
-// } else {
-//     console.log("localStorageNearestCityId == null");
-// }
-// const nearestCityObject = {
-//     id: [],
-//     lat: [],
-//     long: [],
-// };
-
-// const storedDataNearestCity = JSON.parse(
-//     localStorage.getItem("nearestCityObject")
-// );
-// if (storedDataNearestCity != null) {
-//     console.log("storedDataNearestCity: ", storedDataNearestCity);
-
-//     nearestCityObject.id = storedDataNearestCity.id;
-//     nearestCityObject.lat = storedDataNearestCity.lat;
-//     nearestCityObject.long = storedDataNearestCity.long;
-//     console.log("nearestCityObject stored: ", nearestCityObject);
-// } else {
-//     console.log("nearest city storage empty");
-// }
-
-// function createNearestCityWeatherObject(idNc, lat, long) {
-//     nearestCityObject.id.push(idNc);
-//     nearestCityObject.lat.push(lat);
-//     nearestCityObject.long.push(long);
-//     console.log("createNearestCityWeatherObject()", nearestCityObject);
-// }
 /**
  * get weather data
  */
@@ -124,7 +88,6 @@ async function getNearestCity() {
     const urlNearestCity =
         "https://api.airvisual.com/v2/nearest_city?key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0";
 
-    // store the location coordinates of the nearest city in the local storage
     const response = await fetch(urlNearestCity);
     const processedResponse = await response.json();
 
@@ -136,6 +99,7 @@ async function getNearestCity() {
     console.log(state);
     console.log(country);
 
+    // store the location coordinates of the nearest city in the local storage
     const obj = createWeatherObject(city, state, country, idCount);
     localStorage.setItem("obj", JSON.stringify(obj));
     localStorage.setItem("idCount", idCount);
@@ -143,57 +107,52 @@ async function getNearestCity() {
     console.log("idCount: ", idCount);
     displayData(processedResponse, idCount);
 }
-// Get data of cities`
+// Get data of cities
 async function getCityData(city, state, country, divIdCount) {
     const urlCityData = `https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0`;
 
     const response = await fetch(urlCityData);
     const processedResponse = await response.json();
-    console.log("getCityData", object);
+    // console.log("getCityData", object);
     if (processedResponse.status === "success") {
-        console.log(processedResponse);
+        // console.log(processedResponse);
         displayData(processedResponse, divIdCount);
     } else {
-        console.log("error");
+        // console.log("error");
     }
 }
 
 // Display data
 function displayData(cityData, divIdCount) {
-    console.log(cityData.status);
+    // console.log(cityData.status);
     //get city name
     const city = cityData.data.city;
-    //get weather of that city
+
+    //get weather details of city
     const weather = cityData.data.current.weather;
+
     //get weather details
     const humidity = weather.hu;
     const pressure = weather.pr;
     const temp = weather.tp;
+
     //get AQI
     const aqi = cityData.data.current.pollution.aqius;
-
-    // console.log(city);
-    // // console.log(weather);
-    // console.log(aqi);
-
-    // console.log(humidity);
-    // console.log(pressure);
-    // console.log(temp);
 
     //get body
     const body = document.getElementById("weather-details");
     const container = document.createElement("div");
     container.className = "card";
     container.id = divIdCount;
-    console.log(
-        "container.id: " +
-            container.id +
-            " divIdCount: " +
-            divIdCount +
-            "typeof: " +
-            typeof container.id
-    );
-    console.log("card id: ", divIdCount);
+    // console.log(
+    //     "container.id: " +
+    //         container.id +
+    //         " divIdCount: " +
+    //         divIdCount +
+    //         "typeof: " +
+    //         typeof container.id
+    // );
+    // console.log("card id: ", divIdCount);
 
     setDataInCard(
         city,
@@ -225,7 +184,6 @@ function setDataInCard(
     container.appendChild(cityh3);
 
     // AQI
-
     const aqih2 = document.createElement("h2");
     aqih2.className = "aqi";
     if (aqi <= 50) {
@@ -254,20 +212,19 @@ function setDataInCard(
     // humidity
     const humidityp = document.createElement("p");
     humidityp.className = "humidity";
-    humidityp.innerHTML = `<i class="uil uil-tear"></i>${humidity}`;
+    humidityp.innerHTML = `<i class="uil uil-tear"></i>${humidity}%`;
     container.appendChild(humidityp);
 
     // pressure
     const pressurep = document.createElement("p");
     pressurep.className = "pressure";
-    pressurep.innerHTML = `<i class="uil uil-dashboard"></i>${pressure}`;
+    pressurep.innerHTML = `<i class="uil uil-dashboard"></i>${pressure}mb`;
     container.appendChild(pressurep);
 
-    // <i class="uil uil-trash-alt"></i>
     // delete
     const deleteIcon = document.createElement("span");
     deleteIcon.innerHTML = `<i class="uil uil-trash-alt" onclick="removeElement(${divIdCount})"></i>`;
-    console.log("delete: ", divIdCount);
+    // console.log("delete: ", divIdCount);
     deleteIcon.classList.add("delete");
     container.appendChild(deleteIcon);
 
@@ -282,9 +239,9 @@ function removeElement(parentDiv) {
         "typeof: ",
         typeof parentDiv.toString()
     );
-    console.log("removeElement(): ", object);
+    // console.log("removeElement(): ", object);
 
-    console.log(object.id.indexOf(parseInt(parentDiv)));
+    // console.log(object.id.indexOf(parseInt(parentDiv)));
 
     if (document.getElementById(parentDiv.toString())) {
         var parent = document.getElementById(parentDiv);
@@ -293,55 +250,54 @@ function removeElement(parentDiv) {
 
         // remove the details of a id
         const deleteIndex = object.id.indexOf(parseInt(parentDiv));
-        console.log("deleteIndex: ", deleteIndex);
-        // delete object.id[object.id.indexOf(parseInt(parentDiv))];
-        // myFish.splice(3, 1)
-        const deleteCard = (deleteIndex) => {
-            object.id.splice(deleteIndex, 1);
-            object.city.splice(deleteIndex, 1);
-            object.state.splice(deleteIndex, 1);
-            object.country.splice(deleteIndex, 1);
-            localStorage.setItem("obj", JSON.stringify(object));
-            console.log("remove idCount: ", idCount);
-        };
+        // console.log("deleteIndex: ", deleteIndex);
         deleteCard(deleteIndex);
-        console.log("removeElement(): ", object);
+        // console.log("removeElement(): ", object);
     } else {
         alert("Child div has already been removed or does not exist.");
         return false;
     }
-    console.log("remove btn clicked");
+
+    function deleteCard(deleteIndex) {
+        object.id.splice(deleteIndex, 1);
+        object.city.splice(deleteIndex, 1);
+        object.state.splice(deleteIndex, 1);
+        object.country.splice(deleteIndex, 1);
+        localStorage.setItem("obj", JSON.stringify(object));
+        console.log("remove idCount: ", idCount);
+    }
+    // console.log("remove btn clicked");
 }
 
 // local storage
 function createFromLocalStorage() {
-    console.log(JSON.parse(localStorage.getItem("obj")));
+    // console.log(JSON.parse(localStorage.getItem("obj")));
 
     if (JSON.parse(localStorage.getItem("obj")) != null) {
         const localData = JSON.parse(localStorage.getItem("obj"));
 
-        console.log("createFromLocalStorage() called:", localData);
+        // console.log("createFromLocalStorage() called:", localData);
 
         const len = localData.id.length;
-        console.log("len", len);
+        // console.log("len", len);
         // for (let i = 0; i < len; i++) {
         //     createCard(localData, i, localData.id[i]);
         // }
 
         for (let count = 0; count < len; count++) {
-            console.log(
-                "createCard(): ",
-                localData,
-                "count: ",
-                count,
-                "id: ",
-                localData.id[count]
-            );
+            // console.log(
+            //     "createCard(): ",
+            //     localData,
+            //     "count: ",
+            //     count,
+            //     "id: ",
+            //     localData.id[count]
+            // );
             const city = localData.city[count];
             const state = localData.state[count];
             const country = localData.country[count];
             getCityData(city, state, country, localData.id[count]);
-            console.log("card created");
+            // console.log("card created");
         }
     } else {
         console.log("local storage empty");
@@ -349,14 +305,14 @@ function createFromLocalStorage() {
 }
 
 function createCard(localData, count) {
-    console.log(
-        "createCard(): ",
-        localData,
-        "count: ",
-        count,
-        "id: ",
-        localData.id[count]
-    );
+    // console.log(
+    //     "createCard(): ",
+    //     localData,
+    //     "count: ",
+    //     count,
+    //     "id: ",
+    //     localData.id[count]
+    // );
     const city = localData.city[count];
     const state = localData.state[count];
     const country = localData.country[count];
@@ -364,29 +320,25 @@ function createCard(localData, count) {
     console.log("card created");
 }
 
-// window.onload = createFromLocalStorage();
+window.onload = createFromLocalStorage();
 window.onload = getPreviousTheme();
 
 // get the theme switcher variables
 function getPreviousTheme() {
     const localStorageTheme = localStorage.getItem("theme");
-    console.log("getPreviousTheme: ", localStorageTheme);
+    // console.log("getPreviousTheme: ", localStorageTheme);
 
     if (localStorageTheme != null) {
-        console.log(typeof localStorageTheme);
+        // console.log(typeof localStorageTheme);
         document.body.className = localStorageTheme;
         if (localStorageTheme === "dark") {
             const themeSwitchRound = document.getElementById(
                 "theme-switch-round"
             );
-            console.log(themeSwitchRound);
-            console.log(themeSwitchRound.classList);
-            themeSwitchRound.classList.add("local-dark");
-            console.log(themeSwitchRound.classList);
 
             const themeSwitch = document.getElementById("theme-switch");
             themeSwitch.checked = true;
+            themeSwitchRound.classList.add("local-dark");
         }
-    } else {
     }
 }

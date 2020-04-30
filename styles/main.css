@@ -89,7 +89,7 @@ body {
 /* 
 
 
-MOBILE FIRST CSS DESIGN
+MOBILE FIRST CSS
 
 
 */
@@ -199,7 +199,9 @@ MOBILE FIRST CSS DESIGN
 .uil-trash-alt {
     font-size: 1.5em;
 }
-/* cards background and border-top */
+/**********************************
+* cards background and border-top *
+***********************************/
 .green {
     background-color: var(--green-bg);
     border-top: 5px solid var(--green-top);
@@ -225,7 +227,9 @@ MOBILE FIRST CSS DESIGN
     border-top: 5px solid var(--brown-top);
 }
 
-/* search */
+/***************************
+*          search          *
+****************************/
 .search {
     display: flex;
     flex-direction: column;
@@ -291,5 +295,11 @@ MOBILE FIRST CSS DESIGN
     }
     .search-or {
         padding: 0 2em;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 1024px) {
+    .card {
+        width: 40%;
     }
 }
