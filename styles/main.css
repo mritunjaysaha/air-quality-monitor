@@ -53,7 +53,7 @@ body {
   Theme
 */
 .dark {
-    --card-background: hsl(228, 28%, 20%);
+    --suggestion: hsl(228, 28%, 20%);
     --card-background-highlight: hsl(228, 28%, 30%);
     --main-background: hsl(230, 17%, 14%);
     --main-background-top: hsl(232, 19%, 15%);
@@ -63,7 +63,7 @@ body {
 }
 
 .light {
-    --card-background: hsl(227, 47%, 96%);
+    --suggestion: hsl(227, 47%, 96%);
     --card-background-highlight: hsl(227, 47%, 91%);
     --main-background: white;
     --main-font: hsl(230, 17%, 14%);
@@ -239,7 +239,17 @@ MOBILE FIRST CSS
 .search-button {
     width: 100%;
     height: 3em;
+    border: none;
     border-radius: 3px;
+    text-decoration: none;
+    background: var(--suggestion);
+    color: var(--main-font);
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+.search-button:active {
+    transform: translateY(4px);
+    border-bottom: none;
 }
 .search-or {
     padding: 1em;
@@ -253,14 +263,18 @@ MOBILE FIRST CSS
 *    algolia search dropdown    *
 *********************************/
 .ap-dropdown-menu {
-    background-color: transparent;
+    background-color: var(--main-background-top);
 }
 .ap-suggestion {
-    background-color: transparent;
+    background-color: var(--suggestion);
+}
+.ap-suggestion em {
+    /* background-color: black; */
+    color: #aaa;
 }
 .ap-suggestion.ap-cursor:hover,
 .ap-suggestion.ap-cursor:hover {
-    background-color: rgba(94, 99, 128, 0.1);
+    background-color: rgba(94, 99, 128, 0.5);
 }
 
 @media only screen and (min-width: 576px) {
