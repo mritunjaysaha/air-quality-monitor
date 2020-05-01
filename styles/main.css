@@ -290,11 +290,14 @@ MOBILE FIRST CSS
     .header {
         flex-direction: row;
     }
+    .header h1 {
+        margin-right: 30em;
+    }
     .right {
         display: flex;
         flex-direction: row-reverse;
         padding: 0;
-        margin-left: 63%;
+        /* margin-left: 63%; */
     }
     .right p {
         padding-top: 0.2em;
