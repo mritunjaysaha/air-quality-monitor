@@ -86,7 +86,7 @@ async function getNearestCity() {
         idCount++;
         displayData(processedResponse, idCount);
     } else {
-        alert("city not available");
+        alert("City not available");
     }
 }
 // Check whether city details can be fetched
@@ -101,7 +101,7 @@ async function checkCity(city, state, country, divIdCount) {
         localStorage.setItem("obj", JSON.stringify(obj));
         getCityData(city, state, country, divIdCount);
     } else {
-        alert("city not found");
+        alert("City not found");
     }
 }
 // Get data of cities
