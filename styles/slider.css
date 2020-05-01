@@ -76,4 +76,7 @@
         width: 80px;
         padding-right: 1em;
     }
+    .slider:before {
+        left: 33px;
+    }
 }

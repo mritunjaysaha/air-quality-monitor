@@ -73,17 +73,21 @@ async function getNearestCity() {
 
     const response = await fetch(urlNearestCity);
     const processedResponse = await response.json();
+    console.log(processedResponse);
+    if (processedResponse.status === "success") {
+        const city = processedResponse.data.city;
+        const state = processedResponse.data.state;
+        const country = processedResponse.data.country;
 
-    const city = processedResponse.data.city;
-    const state = processedResponse.data.state;
-    const country = processedResponse.data.country;
-
-    // store the location coordinates of the nearest city in the local storage
-    const obj = createWeatherObject(city, state, country, idCount);
-    localStorage.setItem("obj", JSON.stringify(obj));
-    localStorage.setItem("idCount", idCount);
-    idCount++;
-    displayData(processedResponse, idCount);
+        // store the location coordinates of the nearest city in the local storage
+        const obj = createWeatherObject(city, state, country, idCount);
+        localStorage.setItem("obj", JSON.stringify(obj));
+        localStorage.setItem("idCount", idCount);
+        idCount++;
+        displayData(processedResponse, idCount);
+    } else {
+        alert("city not available");
+    }
 }
 // Check whether city details can be fetched
 async function checkCity(city, state, country, divIdCount) {

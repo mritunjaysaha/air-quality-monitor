@@ -53,20 +53,26 @@ body {
   Theme
 */
 .dark {
+    --ap-suggestion-em: #000;
     --suggestion: hsl(228, 28%, 20%);
     --main-background: hsl(230, 17%, 14%);
     --main-background-top: hsl(232, 19%, 15%);
     --main-font: white;
     --secondary-font: hsl(228, 34%, 66%);
     --cards-font: #eee;
+    --ap-dropdown: var(--main-background);
+    --ap-address: #ccc;
 }
 
 .light {
+    --ap-suggestion-em: #000;
     --suggestion: hsl(231, 35%, 93%);
     --main-background: white;
     --main-font: hsl(230, 17%, 14%);
     --secondary-font: hsl(228, 12%, 44%);
     --cards-font: #000;
+    --ap-dropdown: #fff;
+    --ap-address: #333;
 }
 
 body {
@@ -260,15 +266,19 @@ MOBILE FIRST CSS
 /********************************
 *    algolia search dropdown    *
 *********************************/
+.ap-address {
+    color: var(--ap-address);
+}
 .ap-dropdown-menu {
-    background-color: var(--main-background-top);
+    background-color: var(--ap-dropdown);
+    /* background-color: #000; */
 }
 .ap-suggestion {
     background-color: var(--suggestion);
 }
 .ap-suggestion em {
     /* background-color: black; */
-    color: #aaa;
+    color: var(--ap-suggestion-em);
 }
 .ap-suggestion.ap-cursor:hover,
 .ap-suggestion.ap-cursor:hover {
@@ -322,5 +332,13 @@ MOBILE FIRST CSS
 @media only screen and (min-width: 576px) and (max-width: 1024px) {
     .card {
         width: 40%;
+    }
+    .header h1 {
+        width: 100%;
+        margin-right: 15em;
+    }
+    /* slider */
+    .right {
+        margin-left: 10%;
     }
 }
