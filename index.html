@@ -25,9 +25,6 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&family=Montserrat:wght@300;400;600&display=swap"
         rel="stylesheet">
     <!-- algolia  -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/docsearch.js@{{docSearchJSVersion}}/dist/cdn/docsearch.min.css" />
-
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
 
 </head>
@@ -48,15 +45,13 @@
         </div>
     </header>
     <div class="search">
-        <button class="search-button" onclick="getNearestCity()">GET NEAREST CITY</button>
+        <button class="search-button" onclick="getLocation()">GET NEAREST CITY</button>
         <p class="search-or">or</p>
         <input class="search-input" id="search" type="text" placeholder="Search box">
     </div>
     <section id="weather-details" class="cards-container">
 
     </section>
-    <!-- algolia docsearch -->
-    <script src="https://cdn.jsdelivr.net/npm/docsearch.js@{{docSearchJSVersion}}/dist/cdn/docsearch.min.js"></script>
     <!-- my scripts -->
     <script src="./themeswitcher.js"></script>
     <script src="./places.js"></script>

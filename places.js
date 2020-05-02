@@ -66,14 +66,26 @@ function createWeatherObject(city, state, country, divIdCount) {
  * get weather data
  */
 
-// Nearest City
-async function getNearestCity() {
-    const urlNearestCity =
-        "https://api.airvisual.com/v2/nearest_city?key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0";
+//  get location coordinates of the nearest city
+function getLocation() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
+        console.log(lat, long);
 
-    const response = await fetch(urlNearestCity);
+        getNearestCity(lat, long);
+    });
+}
+// Nearest City
+async function getNearestCity(lat, long) {
+    const response = await fetch(
+        `https://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=a3765a9b-e91c-4fc7-9b0e-0992e69410f0`
+    );
+
     const processedResponse = await response.json();
+
     console.log(processedResponse);
+
     if (processedResponse.status === "success") {
         const city = processedResponse.data.city;
         const state = processedResponse.data.state;
